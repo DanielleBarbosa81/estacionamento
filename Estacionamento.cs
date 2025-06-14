@@ -6,33 +6,37 @@ using System.Threading.Tasks;
 namespace Estacionamento
 {
     public class Estacionamento
+
     {
-        private decimal precoInicial;
-        private decimal precoPorHora;
-        private decimal precoTotal;
-        public decimal PrecoTotal
+        public Double valorHora { get; set; }
+        public Double valorHoraExcedente { get; set; }
+        public Double valorDiaria { get; set; }
+        public DateTime DataHoraEntrada { get; set; }
+        public DateTime DataHoraSaida { get; set; }
+        public List<Veiculo> veiculos = new List<Veiculo>();
+
+
+        
+
+        public void AdicionarVeiculo(Veiculo veiculo)
         {
-            get { return precoTotal; }
-            private set { precoTotal = precoInicial * precoPorHora; }
+            veiculos.Add(veiculo);
         }
-        private List<string> veiculosEstacionados;
-        public Estacionamento(decimal precoInicial, decimal precoPorHora)
+
+        public void RemoverVeiculo(Veiculo veiculo)
         {
-            this.precoInicial = precoInicial;
-            this.precoPorHora = precoPorHora;
-            this.veiculosEstacionados = new List<string>();
-        }
-        public void EstacionarVeiculo(string placa)
-        {
-            if (!veiculosEstacionados.Contains(placa))
+            if (veiculos.Contains(veiculo))
             {
-                veiculosEstacionados.Add(placa);
-                Console.WriteLine($"Veículo {placa} estacionado com sucesso.");
+                veiculos.Remove(veiculo);
             }
             else
             {
-                Console.WriteLine($"Veículo {placa} já está estacionado.");
+                throw new Exception ("Veículo não encontrado")
             }
+        public void CalcularValor{
+
+        }
+
         }
     }
 }
